@@ -21,52 +21,7 @@ selction_path = 'C:\\Users\\shiyi\\Documents\\1_Project\\ENVvsPT\\data\\'
 
 file_names = os.listdir(Sig_path)
 sig_names = [file_name for file_name in file_names if all([x in file_name for x in [ "_OriginSigArray_AMUA_Mean.npy"]])]
-print(sig_names)
-#%% 
-#'''
-#Check the distribution shape of the samples
-#Wilcoxon test is only work for continuous, skewed and random samples 
-#Paired sample T-test work for normal distribution
-#'''
-#sig_name = sig_names[2]
-#print(sig_name)
-#amua_array = np.load(Sig_path+sig_name, allow_pickle = True)
-#
-#Fs_down = 2000
-#response_end = 0.05
-#baseline_start = 0.45
-#Wn = 2*200/Fs_down
-#bLow,aLow = butter(2, Wn, 'lowpass')
-#
-## pick one ITD combination to plot the distribution
-#ntrials = amua_array.shape[-1]
-#for cc in range(32):
-#    for ff in range(2):
-#        for dd in range(3):
-#            for ii in range(3):
-#                for jj in range(3):
-#                    amua = amua_array[cc, ff, dd, ii, jj, :, :]
-#                    amua = filtfilt(bLow,aLow, amua, axis=0, padlen=100)
-#                    amua_response = np.amax(amua[1:int(Fs_down*response_end), :], 0)
-##                    amua_response = np.mean(amua[1:int(Fs_down*response_end), :], 0)
-#                    amua_baseline = np.mean(amua[int(Fs_down*baseline_start):], 0)
-#                    
-#                    response_results = stats.kstest(amua_response, "norm")
-#                    print(response_results[1] < 0.05)
-#                    baseline_results = stats.kstest(amua_baseline, "norm")
-#                    print(baseline_results[1] < 0.05)
-#                    
-#                    plt.figure()
-#                    plt.hist(amua_response)
-#                    plt.figure()
-#                    plt.hist(amua_baseline)
-#                    
-#                    plt.figure()
-#                    x = np.repeat(1, 15)
-#                    plt.plot(x, amua_response, '.')
-#                    x = np.repeat(2, 15)
-#                    plt.plot(x, amua_baseline, '.')
-#                    
+print(sig_names)                
 #%%
 '''
 For every multi-unit, every stimulis combination,
