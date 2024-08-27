@@ -102,7 +102,7 @@ for sig_name in sig_names:
                     continue
                 num = 5
                 
-                # find the time window the AMUA response larger than thresh 4 data points in row                
+                # find the time window the AMUA response larger than thresh 5 data points in row                
                 for x1 in range(idxs.shape[0]):
                     y = 0
                     for a in range(num):
