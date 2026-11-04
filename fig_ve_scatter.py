@@ -5,11 +5,12 @@ Created on Fri Feb 28 17:18:15 2025
 
 @author: shiyi
 """
+import config  # data/figure folders, see config.py
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.cm import plasma
-analysisRoot = '/ephys/2/0_ENVvsPT/Analysis'
+analysisRoot = config.ANALYSIS_ROOT
 
 dataFiles = pd.read_csv(analysisRoot+'/datafileInventory.csv')
 recordingSites = pd.read_csv(analysisRoot+'/recordingsiteInventory.csv')
@@ -225,4 +226,4 @@ for corhNum, cohort in enumerate(cohorts):
                     ha='right', va='bottom',
                     fontsize=10, color='black')
             
-fig.savefig('/ephys/2/0_ENVvsPT/Figure/'+'Figure4.png', dpi = 600)
+fig.savefig(config.FIGURE_ROOT+'/'+'Figure4.png', dpi = 600)

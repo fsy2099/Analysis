@@ -5,13 +5,14 @@ Created on Mon Dec 16 16:24:15 2024
 
 @author: jan
 """
+import config  # data/figure folders, see config.py
 from tqdm import tqdm
 # import glob
 # import os
 import pandas as pd 
 import matplotlib.pyplot as plt
 from sys import path
-path.append('/home/colliculus/behaviourBoxes/software/ratCageProgramsV3/')
+path.append(config.EPHYS_LIB+'/')
 import RZ2ephys as ep
 from matplotlib.gridspec import GridSpec
 import numpy as np
@@ -53,13 +54,13 @@ further analysis is done for the respective config itself.
 # stimVarParams=['duration (s)', 'clickRate (Hz)', 'ITD (ms)', 'env ITD (ms)'] # specify the stim params that were permuted to generate different stimulus conditions
 # stimVarParams=['ITD (ms)','ILD (dB)','clickRate (Hz)'] # specify the stim params that were permuted to generate different stimulus conditions
 
-dataRoot='/ephys/2/0_ENVvsPT/Data/'
+dataRoot=config.DATA_ROOT+'/'
 # dataRoot='/ephys/2/CIproject/2_ITD_ILD_cueTrading/Data'
-# analysisRoot='/ephys/2/0_ENVvsPT/Analysis/Salt_Beaker_CSV_Files'
-# analysisRoot='/ephys/2/0_ENVvsPT/Analysis/Debugging_csv_files'
-analysisRoot='/ephys/2/0_ENVvsPT/Analysis/'
+# analysisRoot=config.ANALYSIS_ROOT+'/Salt_Beaker_CSV_Files'
+# analysisRoot=config.ANALYSIS_ROOT+'/Debugging_csv_files'
+analysisRoot=config.ANALYSIS_ROOT+'/'
 
-figureRoot = '/ephys/2/0_ENVvsPT/Figure'
+figureRoot = config.FIGURE_ROOT
 stimVarParams = ['duration (s)', 'clickRate (Hz)', 'ITD (ms)', 'env ITD (ms)']
 paramsDict = {'duration (s)': [0.01, 0.05, 0.2], 'clickRate (Hz)': [900.0, 4500.0], 'ITD (ms)': [-0.1, 0.0, 0.1], 'env ITD (ms)': [-0.1, 0.0, 0.1]}
 #%
@@ -847,7 +848,7 @@ for row in np.arange(len(dataset)): # set through file list
         # if 'ICAC' in dataset.iloc[row].fileName:
         #     print(f"Skipping {dataset.iloc[row].fileName} as it contains 'ICAC'")
         #     continue
-        swps, stimPar = readEphysFileFromRow(dataset, row, stimVarParams, dataRoot = '/ephys/2/0_ENVvsPT/Data', loadOrig=True)
+        swps, stimPar = readEphysFileFromRow(dataset, row, stimVarParams, dataRoot = config.DATA_ROOT, loadOrig=True)
         
         if isinstance(swps, list): # comment by Jan: I don't know what this does. Seems suspect --> Answer from Tim: ths is to get rid of the data we considered "not clean" in the the datafileinventory by adding a 0 in the Cleaned column. 
             continue
@@ -868,8 +869,8 @@ for row in np.arange(len(dataset)): # set through file list
         # detect and remove jump from signal after cleaning swps
         
         print('Writing cleaned data to disk ...') 
-        # writeEphysFileFromRow(dataset, row, swpClean, stimPar, dataRoot = '/ephys/2/0_ENVvsPT/Data/', writeClean=True)
-        writeEphysFileFromRow(dataset, row, swpClean, stimPar, dataRoot = '/ephys/2/0_ENVvsPT/Data/Freshly_Analyzed', writeClean=True)
+        # writeEphysFileFromRow(dataset, row, swpClean, stimPar, dataRoot = config.DATA_ROOT+'/', writeClean=True)
+        writeEphysFileFromRow(dataset, row, swpClean, stimPar, dataRoot = config.FRESH_DIR, writeClean=True)
         
         #Write to the saved csv file with the ending _Clean the std of the last 100 recording points and the abs max difference value fom n to n+2
         # filename = dataset.fileName[row][:-5]+'_Clean.csv'
@@ -879,8 +880,8 @@ for row in np.arange(len(dataset)): # set through file list
         else:
             filename = filename+'_Clean.csv'
             #changed to new dataroot with freshly analyzed
-        df = pd.read_csv('/ephys/2/0_ENVvsPT/Data/Freshly_Analyzed/'+dataset.animDir[row]+'/'+filename)
-        # df = pd.read_csv('/ephys/2/0_ENVvsPT/Data/'+dataset.animDir[row]+'/'+filename)
+        df = pd.read_csv(config.FRESH_DIR+'/'+dataset.animDir[row]+'/'+filename)
+        # df = pd.read_csv(config.DATA_ROOT+'/'+dataset.animDir[row]+'/'+filename)
 
         for chan in range (32):
             chan = str(chan)
@@ -1030,8 +1031,8 @@ for row in np.arange(len(dataset)): # set through file list
         
         #Save the csv file:
             #changed to new dataroot with freshly analyzed
-        df.to_csv('/ephys/2/0_ENVvsPT/Data/Freshly_Analyzed/'+dataset.animDir[row]+'/'+filename, index=False)
-        # df.to_csv('/ephys/2/0_ENVvsPT/Data/'+dataset.animDir[row]+'/'+filename, index=False)
+        df.to_csv(config.FRESH_DIR+'/'+dataset.animDir[row]+'/'+filename, index=False)
+        # df.to_csv(config.DATA_ROOT+'/'+dataset.animDir[row]+'/'+filename, index=False)
         #End of the std and Abs Val Saving part ############################################################################
         
         # apply AMUA filter
@@ -1080,15 +1081,15 @@ for row in np.arange(len(dataset)): # set through file list
                     # plt.tight_layout()
                     ''''''
         print('Saving AMUA ...')
-        writeEphysFileFromRow(dataset, row, swpAMUA, df, dataRoot = '/ephys/2/0_ENVvsPT/Data/Freshly_Analyzed', writeAMUA=True)
-        # writeEphysFileFromRow(dataset, row, swpAMUA, df, dataRoot = '/ephys/2/0_ENVvsPT/Data/', writeAMUA=True)
+        writeEphysFileFromRow(dataset, row, swpAMUA, df, dataRoot = config.FRESH_DIR, writeAMUA=True)
+        # writeEphysFileFromRow(dataset, row, swpAMUA, df, dataRoot = config.DATA_ROOT+'/', writeAMUA=True)
         print('...done with '+dataset.iloc[row].fileName+'\n')
 #%% 
 '''
 Generate inventory of recoding sites for the study
 The code below generated a CSV file that serves as inventory of recording sites from cleaned datafile. 
 '''
-dataset=pd.read_csv('/ephys/2/0_ENVvsPT/Analysis'+'/datafileInventory.csv')
+dataset=pd.read_csv(config.ANALYSIS_ROOT+'/datafileInventory.csv')
 penetrationNameList = []
 channelList = []
 Right_IC_List = []
@@ -1102,7 +1103,7 @@ for row in np.arange(len(dataset)):
         Right_IC_List = Right_IC_List + [dataset.rightIC[row]]*32
         cohort = cohort + [dataset.condition[row]]*32
 df = pd.DataFrame({'fileName': penetrationNameList,'Channel': channelList, 'rightIC': Right_IC_List, 'cohort': cohort})
-df.to_csv('/ephys/2/0_ENVvsPT/Analysis'+'/recordingsiteInventory.csv', index=False) 
+df.to_csv(config.ANALYSIS_ROOT+'/recordingsiteInventory.csv', index=False) 
   #%% 
 '''
 run Wilcoxon-test over 'datafileInventory.csv' to find out which channels are responsive
@@ -1128,7 +1129,7 @@ for key in paramsDict:
         print("Please enter a valid number")
 #%%    
 # conditionToCheck=[('clickRate (Hz)',900), ('ITD (ms)',0), ('ILD (dB)',0)] 
-dataRoot='/ephys/2/0_ENVvsPT/Data/Freshly_Analyzed/'
+dataRoot=config.FRESH_DIR+'/'
 
 wilcoxonResultsList = []
 selectionResultsList = []
@@ -1147,14 +1148,14 @@ for row in np.arange(len(dataset)):
         selectionResultsList = selectionResultsList+selection
 # print('... Done.')
 # df = pd.read_csv(analysisRoot+'/recordingsiteInventoryV2.csv')
-# df = pd.read_csv('/ephys/2/0_ENVvsPT/Analysis/Salt_Beaker_CSV_Files'+'/recordingsiteInventory_Salt_Beaker_VE.csv')
+# df = pd.read_csv(config.ANALYSIS_ROOT+'/Salt_Beaker_CSV_Files'+'/recordingsiteInventory_Salt_Beaker_VE.csv')
 # df=pd.read_csv(analysisRoot+'/recordingsiteInventory_Debugging.csv')
 df=pd.read_csv(analysisRoot+'/recordingsiteInventory_ITD+.csv')
 
 df['wilcoxon-pValue'] = wilcoxonResultsList
 df['Responsive'] = selectionResultsList
 # df.to_csv(analysisRoot+'/'+'recordingsiteInventoryV2.csv', index=False)   
-df.to_csv('/ephys/2/0_ENVvsPT/Analysis'+'/recordingsiteInventory_ITD+.csv', index=False) 
+df.to_csv(config.ANALYSIS_ROOT+'/recordingsiteInventory_ITD+.csv', index=False) 
 
 
 

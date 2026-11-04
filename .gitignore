@@ -1,4 +1,4 @@
-﻿# 數據和二進位檔
+# Data and binaries
 *.npy
 *.npz
 *.mat
@@ -6,17 +6,23 @@
 *.h5
 *.pkl
 data/
-# 圖片
+
+# Generated figures
+figures/
 *.png
 *.jpg
 *.pdf
 *.svg
-# 雜檔和調試輸出
+
+# Python / editors / OS
 __pycache__/
 *.pyc
 .spyproject/
 .ipynb_checkpoints/
+.DS_Store
 .~lock.*
 ~$*
+
+# Scratch outputs
 Debugging_csv_files/
 your_output_file.csv

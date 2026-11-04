@@ -14,6 +14,7 @@ Created on Wed Jan 21 17:34:16 2026
 '''
 Adjust the data accordingly -> 
 '''
+import config  # data/figure folders, see config.py
 import re
 
 import statsmodels.api as sm
@@ -35,17 +36,17 @@ warnings.filterwarnings('ignore')
 
 
 import matplotlib.patches as patches
-figurepath = '/home/colliculus/projects/Manuscripts/ENVvsPT_Ephys/'
-figurepath = '/home/colliculus/projects/Manuscripts/ENVvsPT_Ephys/'
+figurepath = config.FIGURE_ROOT+'/'
+figurepath = config.FIGURE_ROOT+'/'
 
-analysisRoot = '/ephys/2/0_ENVvsPT/Analysis'
-dataRoot = '/ephys/2/0_ENVvsPT/Data'
+analysisRoot = config.ANALYSIS_ROOT
+dataRoot = config.DATA_ROOT
 dataFiles = pd.read_csv(analysisRoot+'/datafileInventory.csv')
 # dataFiles = pd.read_csv(analysisRoot+'/Salt_Beaker_CSV_Files/datafileInventory_Salt_Beaker_Agar.csv')
 # baselinerecordingSites = pd.read_csv(analysisRoot+'/Salt_Beaker_CSV_Files/recordingsiteInventory_Salt_Beaker_Agar_baseline.csv')
 # recordingSites = pd.read_csv(analysisRoot+'/Salt_Beaker_CSV_Files/recordingsiteInventory_Salt_Beaker_Agar.csv')
-baselinerecordingSites = pd.read_csv('/ephys/2/0_ENVvsPT/Analysis/recordingsiteInventory_baseline.csv')
-recordingSites = pd.read_csv('/ephys/2/0_ENVvsPT/Analysis/recordingsiteInventory.csv')
+baselinerecordingSites = pd.read_csv(config.ANALYSIS_ROOT+'/recordingsiteInventory_baseline.csv')
+recordingSites = pd.read_csv(config.ANALYSIS_ROOT+'/recordingsiteInventory.csv')
 
 # dataFiles = pd.read_csv(analysisRoot+'/datafileInventory_V3.csv')
 
@@ -431,7 +432,7 @@ save_to_csv(processed_data, 'your_output_file.csv')
 # from scipy import stats
 
 # # Load your data
-# df = pd.read_csv('/ephys/2/0_ENVvsPT/Analysis/MEM_ENVvsPT.csv')
+# df = pd.read_csv(config.ANALYSIS_ROOT+'/MEM_ENVvsPT.csv')
 
 
 # # Clean column names (remove extra spaces)
@@ -850,7 +851,7 @@ save_to_csv(processed_data, 'your_output_file.csv')
 # sns.set_palette("Set2")
 
 # # Load your data
-# df = pd.read_csv('/ephys/2/0_ENVvsPT/Analysis/MEM_ENVvsPT.csv')
+# df = pd.read_csv(config.ANALYSIS_ROOT+'/MEM_ENVvsPT.csv')
 # df.columns = df.columns.str.strip()
 # df = df.rename(columns={'Aimal': 'Animal'})
 
@@ -1380,7 +1381,7 @@ save_to_csv(processed_data, 'your_output_file.csv')
 
 # # Assuming df is already loaded
 # # Check the structure
-# df = pd.read_csv('/ephys/2/0_ENVvsPT/Analysis/MEM_ENVvsPT_New.csv')
+# df = pd.read_csv(config.ANALYSIS_ROOT+'/MEM_ENVvsPT_New.csv')
 
 # print("Dataframe info:")
 # print(df.info())
@@ -1406,7 +1407,7 @@ save_to_csv(processed_data, 'your_output_file.csv')
 # %%
 
 
-df = pd.read_csv('/ephys/2/0_ENVvsPT/Analysis/GEE_Model_V3.csv')
+df = pd.read_csv(config.ANALYSIS_ROOT+'/GEE_Model_V3.csv')
 
 print("Anims:", df['Animal'].unique())
 
