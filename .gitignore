@@ -1,0 +1,22 @@
+﻿# 數據和二進位檔
+*.npy
+*.npz
+*.mat
+*.ephys
+*.h5
+*.pkl
+data/
+# 圖片
+*.png
+*.jpg
+*.pdf
+*.svg
+# 雜檔和調試輸出
+__pycache__/
+*.pyc
+.spyproject/
+.ipynb_checkpoints/
+.~lock.*
+~$*
+Debugging_csv_files/
+your_output_file.csv

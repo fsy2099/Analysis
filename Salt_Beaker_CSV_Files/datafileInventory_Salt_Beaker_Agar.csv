@@ -1,0 +1,4 @@
+fileName,animDir,condition,rightIC,Cleaned
+Beaker1_1_ITD_ENV_vs_PT_CI_1,SaltBeaker_ENVvsPT_AGAR,SB,True,1
+Beaker1_2_ITD_ENV_vs_PT_CI_1,SaltBeaker_ENVvsPT_AGAR,SB,True,1
+Beaker1_3_ITD_ENV_vs_PT_CI_2,SaltBeaker_ENVvsPT_AGAR,SB,True,1

@@ -19,8 +19,10 @@ if platform == "darwin":
     results_path = 'C:\\Users\\shiyi\\Documents\\ENVvsPT data\\ND\\2022_01_25\\'   
 elif platform == "linux":
     Sig_path = '/disks/CIdata/1_ENVvsPT/1_NH/2022_08_22/Results_Data/'
+    if not os.path.exists(Sig_path):
+        Sig_path='/ephys/2/0_ENVvsPT/Data_HK/20220822_example/'
+    results_path = Sig_path
 #    Sig_path = '/media/shiyi/CIdata/2023_02_16/'
-    results_path = '/disks/CIdata/1_ENVvsPT/1_NH/2022_08_22/Results_Data/'
 elif platform == "win32":
     Sig_path = 'C:\\Users\\shiyi\\Documents\\1_Project\\ENVvsPT\\example\\'
     results_path = 'C:\\Users\\shiyi\\Documents\\1_Project\\ENVvsPT\\example\\'   
