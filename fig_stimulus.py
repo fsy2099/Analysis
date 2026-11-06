@@ -7,7 +7,8 @@ Created on Mon Mar 17 14:03:37 2025
 
 Plot out the stimulus shape
 """
-eaSource = '/home/colliculus/behaviourBoxes/software/ratCageProgramsV3/'
+import config  # data/figure folders, see config.py
+eaSource = config.EPHYS_LIB+'/'
 from sys import path
 path.append(eaSource)
 import ClickTrainLibrary as cl
@@ -17,7 +18,7 @@ import matplotlib.pyplot as plt
 from scipy.signal import butter, filtfilt
 from scipy import stats
 # read in stim.csv
-stim = pd.read_csv('/ephys/2/0_ENVvsPT/Data/stim.csv')
+stim = pd.read_csv(config.DATA_ROOT+'/stim.csv')
 #%%
 '''
 load in stimulus waveform
@@ -157,8 +158,8 @@ def prepare3X3Plot(itd=[-0.1, 0, 0.1]):
 '''
 '''
 import RZ2ephys as ep
-analysisRoot = '/ephys/2/0_ENVvsPT/Analysis/Salt_Beaker_CSV_Files/'
-dataRoot = '/ephys/2/0_ENVvsPT/Data'
+analysisRoot = config.ANALYSIS_ROOT+'/Salt_Beaker_CSV_Files/'
+dataRoot = config.DATA_ROOT
 dataFiles = pd.read_csv(analysisRoot+'/datafileInventory_Salt_Beaker_Agar.csv')
 recordingSites = pd.read_csv(analysisRoot+'/recordingsiteInventory_Salt_Beaker_Agar.csv')
 
@@ -328,7 +329,7 @@ for i, info in result1.iterrows():
     plt.xlabel('PT ITD')
     plt.ylabel('AMUAavg')
 
-    plt.savefig(f'/ephys/2/0_ENVvsPT/Figure/review/{filename}_ch{chanNum}.png')
+    plt.savefig(f'{config.FIGURE_ROOT}/review/{filename}_ch{chanNum}.png')
     plt.close('all')
 #%%
 '''

@@ -5,6 +5,7 @@ Created on Wed Jan 21 15:10:08 2026
 
 @author: shiyi
 """
+import config  # data/figure folders, see config.py
 from matplotlib.lines import Line2D
 import matplotlib.gridspec as gridspec
 import matplotlib.colors as mcolors
@@ -16,7 +17,7 @@ from scipy import stats
 import numpy as np
 from matplotlib.gridspec import GridSpec
 from sys import path
-path.append('/home/colliculus/behaviourBoxes/software/ratCageProgramsV3/')
+path.append(config.EPHYS_LIB+'/')
 import RZ2ephys as ep
 from tqdm import tqdm
 import glob
@@ -225,8 +226,8 @@ def plot2X3Scatter(sub_recordingSites, sub_baselinerecordingSites, fig, axs, tex
 '''
 VE distribution plot
 '''
-analysisRoot = '/ephys/2/0_ENVvsPT/Analysis'
-dataRoot = '/ephys/2/0_ENVvsPT/Data'
+analysisRoot = config.ANALYSIS_ROOT
+dataRoot = config.DATA_ROOT
 
 dataFiles = pd.read_csv(analysisRoot+'/Salt_Beaker_CSV_Files/datafileInventory_Salt_Beaker_Agar.csv')
 baselinerecordingSites = pd.read_csv(analysisRoot+'/Salt_Beaker_CSV_Files/recordingsiteInventory_Salt_Beaker_Agar_baseline_test.csv')
@@ -241,7 +242,7 @@ import matplotlib
 import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
-figureRoot = '/ephys/2/0_ENVvsPT/Figure/Appendix'
+figureRoot = config.FIGURE_ROOT+'/Appendix'
 durs = [0.01, 0.05, 0.2]  # duration in seconds
 pps = [900, 4500]         # pulses per second
 

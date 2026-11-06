@@ -5,6 +5,7 @@ Created on Thu Jan 22 14:02:48 2026
 
 @author: shiyi
 """
+import config  # data/figure folders, see config.py
 from matplotlib.lines import Line2D
 import matplotlib.gridspec as gridspec
 import matplotlib.colors as mcolors
@@ -16,7 +17,7 @@ from scipy import stats
 import numpy as np
 from matplotlib.gridspec import GridSpec
 from sys import path
-path.append('/home/colliculus/behaviourBoxes/software/ratCageProgramsV3/')
+path.append(config.EPHYS_LIB+'/')
 import RZ2ephys as ep
 from tqdm import tqdm
 import glob
@@ -28,15 +29,15 @@ import matplotlib.pyplot as plt
 '''
 VE distribution plot
 '''
-analysisRoot = '/ephys/2/0_ENVvsPT/Analysis'
-dataRoot = '/ephys/2/0_ENVvsPT/Data'
+analysisRoot = config.ANALYSIS_ROOT
+dataRoot = config.DATA_ROOT
 
 # dataFiles = pd.read_csv(analysisRoot+'/Salt_Beaker_CSV_Files/datafileInventory_Salt_Beaker_Agar.csv')
 # baselinerecordingSites = pd.read_csv(analysisRoot+'/Salt_Beaker_CSV_Files/recordingsiteInventory_Salt_Beaker_Agar_baseline_test.csv')
 # recordingSites = pd.read_csv(analysisRoot+'/Salt_Beaker_CSV_Files/recordingsiteInventory_Salt_Beaker_Agar.csv')
 dataFiles = pd.read_csv(analysisRoot+'/datafileInventory.csv')
-baselinerecordingSites = pd.read_csv('/ephys/2/0_ENVvsPT/Analysis/recordingsiteInventory_baseline.csv')
-recordingSites = pd.read_csv('/ephys/2/0_ENVvsPT/Analysis/recordingsiteInventory.csv')
+baselinerecordingSites = pd.read_csv(config.ANALYSIS_ROOT+'/recordingsiteInventory_baseline.csv')
+recordingSites = pd.read_csv(config.ANALYSIS_ROOT+'/recordingsiteInventory.csv')
 #%%
 '''
 write down the important conditions before starting the pipeline- so adjust these parameters and tell the program which data is going to be analyzed. Call this variable: "Data_conds"
@@ -55,9 +56,9 @@ stimVarParams = ['duration (s)', 'clickRate (Hz)', 'ITD (ms)', 'env ITD (ms)']
 
 #%%
 
-dataRoot = '/ephys/2/0_ENVvsPT/Data'
-analysisRoot = '/ephys/2/0_ENVvsPT/Analysis'
-figureRoot = '/ephys/2/0_ENVvsPT/Figure'
+dataRoot = config.DATA_ROOT
+analysisRoot = config.ANALYSIS_ROOT
+figureRoot = config.FIGURE_ROOT
 
 #%%
 '''
@@ -547,4 +548,4 @@ for corhNum, corhort in enumerate(corhorts):
         fig.text(0.38, 0.053, 'Variance explained by ENV_ITD (%)',
                  va='center', fontsize=16)
         fig.suptitle(corhort+'_ResponsiveUnit#'+str(np.sum(unitNum)), fontsize=18)
-            # plt.savefig('/ephys/2/0_ENVvsPT/Figure/Result_ScatterPlot/'+corhort
+            # plt.savefig(config.FIGURE_ROOT+'/Result_ScatterPlot/'+corhort

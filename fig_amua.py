@@ -9,17 +9,18 @@ AMUA figure for ENVvsPT ephys paper
 The figure has 6 subplots for 3 cohort
 
 """
+import config  # data/figure folders, see config.py
 import pandas as pd
 from sys import path
-path.append('/home/colliculus/behaviourBoxes/software/ratCageProgramsV3/')
+path.append(config.EPHYS_LIB+'/')
 import RZ2ephys as ep
 import matplotlib.pyplot as plt
 import numpy as np
 from scipy.signal import butter, filtfilt
 from mpl_toolkits.axes_grid1.inset_locator import inset_axes
-dataRoot = '/ephys/2/0_ENVvsPT/Data/Freshly_Analyzed'
-analysisRoot = '/ephys/2/0_ENVvsPT/Analysis'
-figureRoot = '/ephys/2/0_ENVvsPT/Figure'
+dataRoot = config.FRESH_DIR
+analysisRoot = config.ANALYSIS_ROOT
+figureRoot = config.FIGURE_ROOT
 #%%
 def findSweepsFor(conditions, stimPar):
     # returns a list of indeces into for the sweeps that satisfy the conditions.
@@ -573,7 +574,7 @@ for ii in range(12):
 #             axs[i*2+1].legend(fontsize=8, loc='upper right', bbox_to_anchor=(1.02, 0.9), framealpha=0)
             
 
-# fig.savefig('/ephys/2/0_ENVvsPT/Figure/'+'Figure3.png', dpi = 600)
+# fig.savefig(config.FIGURE_ROOT+'/'+'Figure3.png', dpi = 600)
 #%%
 for i, cohort in enumerate(cohorts):
     # if i == 3:
@@ -687,7 +688,7 @@ for i, cohort in enumerate(cohorts):
             axs[i*2].legend(fontsize=8, loc='upper right', bbox_to_anchor=(1.02, 0.9), framealpha=0)
             axs[i*2+1].legend(fontsize=8, loc='upper right', bbox_to_anchor=(1.02, 0.9), framealpha=0)
 
-fig.savefig('/ephys/2/0_ENVvsPT/Figure/'+'Figure3.png', dpi = 600)
+fig.savefig(config.FIGURE_ROOT+'/'+'Figure3.png', dpi = 600)
             
         
             

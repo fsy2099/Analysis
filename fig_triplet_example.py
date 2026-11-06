@@ -7,6 +7,7 @@ Created on Fri Jan 23 16:42:18 2026
 
 plot example for triplet illustration
 """
+import config  # data/figure folders, see config.py
 from matplotlib.lines import Line2D
 import matplotlib.gridspec as gridspec
 import matplotlib.colors as mcolors
@@ -18,7 +19,7 @@ from scipy import stats
 import numpy as np
 from matplotlib.gridspec import GridSpec
 from sys import path
-path.append('/home/colliculus/behaviourBoxes/software/ratCageProgramsV3/')
+path.append(config.EPHYS_LIB+'/')
 import RZ2ephys as ep
 from tqdm import tqdm
 import glob
@@ -53,9 +54,9 @@ stimVarParams = ['duration (s)', 'clickRate (Hz)', 'ITD (ms)', 'env ITD (ms)']
 
 
 
-dataRoot = '/ephys/2/0_ENVvsPT/Data'
-analysisRoot = '/ephys/2/0_ENVvsPT/Analysis'
-figureRoot = '/ephys/2/0_ENVvsPT/Figure'
+dataRoot = config.DATA_ROOT
+analysisRoot = config.ANALYSIS_ROOT
+figureRoot = config.FIGURE_ROOT
 
 
 '''
@@ -547,8 +548,8 @@ read in datafileInventory.csv and recordingsiteInventory.csv
 # dataFiles = pd.read_csv(analysisRoot+'/Salt_Beaker_CSV_Files/datafileInventory_Salt_Beaker_Agar.csv')
 # recordingSites = pd.read_csv(analysisRoot+'/Salt_Beaker_CSV_Files/recordingsiteInventory_Salt_Beaker_Agar.csv')
 
-dataFiles=pd.read_csv('/ephys/2/0_ENVvsPT/Analysis/datafileInventory.csv')
-recordingSites = pd.read_csv('/ephys/2/0_ENVvsPT/Analysis/recordingsiteInventory.csv')
+dataFiles=pd.read_csv(config.ANALYSIS_ROOT+'/datafileInventory.csv')
+recordingSites = pd.read_csv(config.ANALYSIS_ROOT+'/recordingsiteInventory.csv')
 #%%
 # checkParams = [4500.0, 0.01]
 
@@ -586,7 +587,7 @@ recordingSites = pd.read_csv('/ephys/2/0_ENVvsPT/Analysis/recordingsiteInventory
 #                         if not chs.empty:
 #                             print(f'{filename},\ncorhNum:{corhNum},animNum:{animNum},penNum:{penNum}:\n{chs.values}')
 #%%
-dataRoot = '/ephys/2/0_ENVvsPT/Data/Freshly_Analyzed'
+dataRoot = config.FRESH_DIR
 corhort = 'NH'
 animNum = 0
 penNum = 0
@@ -599,7 +600,7 @@ filename = dataFiles[(dataFiles['animDir'] == anim) & (dataFiles['Cleaned'] == 1
 # anim = '2022_01_25'
 # filename = '20220125_ENVvsPT_5_P3_1.ephys'
 print(filename)
-swps, stimPar = ep.readEphysFile('/ephys/2/0_ENVvsPT/Data' +'/'+anim+'/'+filename[:-6])
+swps, stimPar = ep.readEphysFile(config.DATA_ROOT +'/'+anim+'/'+filename[:-6])
 swpsClean, stimParCLEAN = ep.readEphysFile(dataRoot+'/'+anim+'/'+filename[:-6]+'_Clean')
 # swpsAMUA, stimPar = ep.readEphysFile(dataRoot+'/'+anim+'/'+filename[:-6]+'_AMUA')
 #%%
