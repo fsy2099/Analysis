@@ -3,7 +3,7 @@
 """
 Created on Fri Jan 17 20:48:05 2025
 
-@author: shiyi, tim
+@author: shiyi
 """
 
 # AnalysisPipeline_3 for ENV vs pt
