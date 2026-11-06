@@ -3,7 +3,7 @@
 """
 Created on Mon Dec 16 16:24:15 2024
 
-@author: shiyi, Tim
+@author: shiyi
 """
 import config  # data/figure folders, see config.py
 from tqdm import tqdm
