@@ -84,7 +84,7 @@ The raw recordings are not included. They are available from the corresponding a
 
 ## Credits
 
-- Analysis pipeline: Jan Schnupp, Tim Fleiner and Shiyi Fang.
+- Analysis pipeline: Shiyi Fang, Tim Fleiner and Jan Schnupp.
 - Figures: Shiyi Fang.
 - Mixed-effects and GEE models: Tim Fleiner.
 
