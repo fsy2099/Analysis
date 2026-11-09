@@ -36,8 +36,8 @@ Run the scripts in order. They were written for interactive use in Spyder (`#%%`
 ## Setup
 
 ```bash
-git clone https://github.com/fsy2099/analysis.git
-cd analysis
+git clone https://github.com/fsy2099/env-vs-pt-itd-ci.git
+cd env-vs-pt-itd-ci
 pip install -r requirements.txt
 ```
 
@@ -88,7 +88,7 @@ The raw recordings are not included. They are available from the corresponding a
 - Figures: Shiyi Fang.
 - Mixed-effects and GEE models: Tim Fleiner.
 
-Each script lists its original author in the header.
+Each script lists its authors in the header.
 
 ## Citation
 
